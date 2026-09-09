@@ -1,16 +1,16 @@
 <?php
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "student_db";
+require_once "config.php";
 
-$conn = mysqli_connect($host, $username, $password, $database);
+$conn = mysqli_connect(
+    $db_host,
+    $db_user,
+    $db_password,
+    $db_name
+);
 
 if (!$conn) {
-    die("Database connection failed: " . mysqli_connect_error());
+    die("Database connection failed.");
 }
-
-echo "Database connected successfully!";
 
 ?>

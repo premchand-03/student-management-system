@@ -1,59 +1,87 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
     margin: 0;
-    padding: 40px;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #222;
 }
 
-.container {
+body > h1,
+body > h2,
+body > h3,
+body > p,
+body > form,
+body > table,
+body > a {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    background: #1f2937;
+    color: white;
+    padding: 22px;
+    margin-top: 0;
+}
+
+h2, h3 {
     max-width: 1000px;
-    margin: auto;
 }
 
-.card {
+form {
+    max-width: 500px;
     background: white;
     padding: 25px;
+    margin-top: 25px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-}
-
-h1, h2 {
-    margin-bottom: 20px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
 }
 
 input {
     width: 100%;
-    max-width: 400px;
-    padding: 10px;
-    margin-top: 5px;
-    box-sizing: border-box;
+    padding: 11px;
+    margin: 7px 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
 }
 
 button {
-    padding: 10px 18px;
+    padding: 11px 18px;
+    background: #2563eb;
+    color: white;
+    border: 0;
+    border-radius: 6px;
     cursor: pointer;
-    border: none;
-    border-radius: 5px;
+}
+
+button:hover {
+    background: #1d4ed8;
 }
 
 a {
+    color: #2563eb;
     text-decoration: none;
-    margin-right: 10px;
 }
 
 table {
-    width: 100%;
+    width: 90%;
+    max-width: 1000px;
+    margin-top: 20px;
     background: white;
     border-collapse: collapse;
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
 }
 
 th, td {
-    padding: 12px;
-    border: 1px solid #ddd;
+    padding: 13px;
+    border-bottom: 1px solid #ddd;
     text-align: left;
 }
 
 th {
-    background: #eee;
+    background: #1f2937;
+    color: white;
 }
