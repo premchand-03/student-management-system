@@ -14,26 +14,51 @@ $total_students = mysqli_num_rows($result);
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard</title>
+    <title>Dashboard - Student Management System</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h1>Student Management System</h1>
+<nav class="navbar">
+    <div class="logo">Student Management System</div>
 
-<h2>Welcome, <?php echo htmlspecialchars($_SESSION["student_name"]); ?>!</h2>
+    <div class="nav-links">
+        <a href="dashboard.php">Dashboard</a>
+        <a href="students.php">Students</a>
+        <a href="add_student.php">Add Student</a>
+        <a href="logout.php">Logout</a>
+    </div>
+</nav>
 
-<h3>Total Students: <?php echo $total_students; ?></h3>
+<div class="container">
 
-<br>
+    <div class="welcome">
+        <h1>Welcome, <?php echo htmlspecialchars($_SESSION["student_name"]); ?> 👋</h1>
+        <p>Manage your student records from one place.</p>
+    </div>
 
-<a href="add_student.php">Add Student</a>
-<br><br>
+    <div class="dashboard-card">
+        <h2>Total Students</h2>
+        <div class="number">
+            <?php echo $total_students; ?>
+        </div>
 
-<a href="students.php">View All Students</a>
-<br><br>
+        <a class="btn" href="students.php">
+            View Students
+        </a>
+    </div>
 
-<a href="logout.php">Logout</a>
+    <div class="dashboard-card">
+        <h2>Add New Student</h2>
+        <p>Create a new student record.</p>
+
+        <a class="btn" href="add_student.php">
+            + Add Student
+        </a>
+    </div>
+
+</div>
 
 </body>
 </html>

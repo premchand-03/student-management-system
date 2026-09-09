@@ -31,6 +31,21 @@ if (!$result) {
 
 <body>
 
+
+
+<nav class="navbar">
+    <div class="logo">Student Management System</div>
+
+    <div class="nav-links">
+        <a href="dashboard.php">Dashboard</a>
+        <a href="students.php">Students</a>
+        <a href="add_student.php">Add Student</a>
+        <a href="logout.php">Logout</a>
+    </div>
+</nav>
+
+
+
 <h1>All Students</h1>
 
 <form method="GET">
