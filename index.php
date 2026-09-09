@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student Management System</title>
-</head>
-<body>
+<?php
 
-    <h1>Student Management System</h1>
-    <p>My first BCA project!</p>
+header("Location: login.php");
+exit;
 
-</body>
-</html>
+?>
