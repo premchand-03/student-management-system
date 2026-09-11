@@ -9,6 +9,14 @@ if (!isset($_SESSION["student_id"])) {
 
 $result = mysqli_query($conn, "SELECT * FROM students");
 $total_students = mysqli_num_rows($result);
+
+$course_result = mysqli_query(
+    $conn,
+    "SELECT course, COUNT(*) AS total
+     FROM students
+     GROUP BY course"
+);
+
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +65,20 @@ $total_students = mysqli_num_rows($result);
             + Add Student
         </a>
     </div>
+
+    <div class="dashboard-card">
+    <h2>Course Statistics</h2>
+
+    <?php while ($row = mysqli_fetch_assoc($course_result)) { ?>
+
+        <p>
+            <strong><?php echo htmlspecialchars($row['course']); ?></strong>
+            :
+            <?php echo $row['total']; ?> students
+        </p>
+
+    <?php } ?>
+</div>
 
 </div>
 

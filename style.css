@@ -162,3 +162,24 @@ table a {
         margin-right: 0;
     }
 }
+
+
+
+
+.success {
+    max-width: 550px;
+    margin: 20px auto;
+    padding: 12px;
+    background: #dcfce7;
+    color: #166534;
+    border-radius: 7px;
+}
+
+.error {
+    max-width: 550px;
+    margin: 20px auto;
+    padding: 12px;
+    background: #fee2e2;
+    color: #991b1b;
+    border-radius: 7px;
+}
