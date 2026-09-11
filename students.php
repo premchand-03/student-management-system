@@ -155,22 +155,29 @@ if (!$result) {
 
                             <td class="actions">
 
-                                <a
-                                    class="edit-btn"
-                                    href="edit_student.php?id=<?php echo $row['id']; ?>"
-                                >
-                                    Edit
-                                </a>
+    <a
+        class="edit-btn"
+        href="profile.php?id=<?php echo $row['id']; ?>"
+    >
+        Profile
+    </a>
 
-                                <a
-                                    class="delete-btn"
-                                    href="delete_student.php?id=<?php echo $row['id']; ?>"
-                                    onclick="return confirm('Are you sure you want to delete this student?');"
-                                >
-                                    Delete
-                                </a>
+    <a
+        class="edit-btn"
+        href="edit_student.php?id=<?php echo $row['id']; ?>"
+    >
+        Edit
+    </a>
 
-                            </td>
+    <a
+        class="delete-btn"
+        href="delete_student.php?id=<?php echo $row['id']; ?>"
+        onclick="return confirm('Are you sure you want to delete this student?');"
+    >
+        Delete
+    </a>
+
+</td>
 
                         </tr>
 

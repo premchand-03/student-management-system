@@ -344,3 +344,36 @@ table {
         text-align: center;
     }
 }
+
+
+
+
+
+
+.profile-card {
+    max-width: 650px;
+    margin: 30px auto;
+    padding: 35px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.08);
+}
+
+.profile-card h1 {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.profile-info {
+    border-top: 1px solid #e5e7eb;
+    margin-bottom: 25px;
+}
+
+.profile-info p {
+    padding: 14px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.profile-card .btn {
+    margin-right: 8px;
+}
