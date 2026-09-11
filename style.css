@@ -229,3 +229,118 @@ table a {
     padding: 0;
     box-shadow: none;
 }
+
+
+
+
+
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.page-header h1 {
+    margin-bottom: 5px;
+}
+
+.page-header p {
+    color: #6b7280;
+}
+
+.search-form {
+    max-width: none;
+    margin: 0 0 25px;
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.search-form input {
+    margin: 0;
+    flex: 1;
+}
+
+.search-form button {
+    margin: 0;
+}
+
+.clear-btn {
+    padding: 12px 18px;
+    background: #6b7280;
+    color: white;
+    text-decoration: none;
+    border-radius: 7px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}
+
+.actions {
+    white-space: nowrap;
+}
+
+.edit-btn,
+.delete-btn {
+    display: inline-block;
+    padding: 7px 11px;
+    border-radius: 5px;
+    color: white !important;
+    margin-right: 5px;
+}
+
+.edit-btn {
+    background: #2563eb;
+}
+
+.delete-btn {
+    background: #dc2626;
+}
+
+.edit-btn:hover {
+    background: #1d4ed8;
+}
+
+.delete-btn:hover {
+    background: #b91c1c;
+}
+
+.no-data {
+    text-align: center;
+    padding: 30px;
+    color: #6b7280;
+}
+
+@media (max-width: 700px) {
+
+    .page-header {
+        display: block;
+    }
+
+    .page-header .btn {
+        margin-top: 15px;
+    }
+
+    .search-form {
+        display: block;
+    }
+
+    .search-form input,
+    .search-form button,
+    .search-form .clear-btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+}

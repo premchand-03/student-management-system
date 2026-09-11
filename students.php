@@ -1,40 +1,65 @@
 <?php
 include "db.php";
 
-$search = $_GET['search'] ?? '';
+$search = trim($_GET["search"] ?? "");
 
-$sql = "SELECT id, name, email, phone, course
-        FROM students
-        WHERE name LIKE ?
-        ORDER BY id DESC";
+if ($search != "") {
 
-$stmt = mysqli_prepare($conn, $sql);
+    $sql = "SELECT id, name, email, phone, course
+            FROM students
+            WHERE name LIKE ?
+               OR email LIKE ?
+               OR course LIKE ?
+            ORDER BY id DESC";
 
-$searchTerm = "%" . $search . "%";
+    $stmt = mysqli_prepare($conn, $sql);
 
-mysqli_stmt_bind_param($stmt, "s", $searchTerm);
-mysqli_stmt_execute($stmt);
+    $searchTerm = "%" . $search . "%";
 
-$result = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_bind_param(
+        $stmt,
+        "sss",
+        $searchTerm,
+        $searchTerm,
+        $searchTerm
+    );
+
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+} else {
+
+    $sql = "SELECT id, name, email, phone, course
+            FROM students
+            ORDER BY id DESC";
+
+    $result = mysqli_query($conn, $sql);
+}
 
 if (!$result) {
-    die("Query failed: " . mysqli_error($conn));
+    die("Unable to load students.");
 }
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>All Students</title>
+
+    <title>Students - Student Management System</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-
-
 <nav class="navbar">
-    <div class="logo">Student Management System</div>
+
+    <div class="logo">
+        Student Management System
+    </div>
 
     <div class="nav-links">
         <a href="dashboard.php">Dashboard</a>
@@ -42,84 +67,135 @@ if (!$result) {
         <a href="add_student.php">Add Student</a>
         <a href="logout.php">Logout</a>
     </div>
+
 </nav>
 
+<div class="container">
 
+    <div class="page-header">
 
-<h1>All Students</h1>
+        <div>
+            <h1>Students</h1>
+            <p>Manage all registered students.</p>
+        </div>
 
-<form method="GET">
-    <input
-        type="text"
-        name="search"
-        placeholder="Search student..."
-        value="<?php echo htmlspecialchars($search); ?>"
-    >
+        <a class="btn" href="add_student.php">
+            + Add Student
+        </a>
 
-    <button type="submit">Search</button>
-</form>
+    </div>
 
-<br>
+    <form class="search-form" method="GET">
 
-<a href="add_student.php">+ Add New Student</a>
+        <input
+            type="text"
+            name="search"
+            value="<?php echo htmlspecialchars($search); ?>"
+            placeholder="Search by name, email or course..."
+        >
 
-<br><br>
+        <button type="submit">
+            Search
+        </button>
 
-<table border="1" cellpadding="10" cellspacing="0">
+        <?php if ($search != ""): ?>
 
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Course</th>
-        <th>Action</th>
-    </tr>
-
-    <?php while ($student = mysqli_fetch_assoc($result)) { ?>
-
-    <tr>
-
-        <td><?php echo $student['id']; ?></td>
-
-        <td>
-            <?php echo htmlspecialchars($student['name']); ?>
-        </td>
-
-        <td>
-            <?php echo htmlspecialchars($student['email']); ?>
-        </td>
-
-        <td>
-            <?php echo htmlspecialchars($student['phone'] ?? ''); ?>
-        </td>
-
-        <td>
-            <?php echo htmlspecialchars($student['course'] ?? ''); ?>
-        </td>
-
-        <td>
-
-            <a href="edit_student.php?id=<?php echo $student['id']; ?>">
-                Edit
+            <a class="clear-btn" href="students.php">
+                Clear
             </a>
 
-            |
+        <?php endif; ?>
 
-            <a
-                href="delete_student.php?id=<?php echo $student['id']; ?>"
-                onclick="return confirm('Are you sure?');"
-            >
-                Delete
-            </a>
+    </form>
 
-        </td>
+    <div class="table-wrapper">
 
-    </tr>
+        <table>
 
-    <?php } ?>
+            <thead>
 
-</table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Course</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <?php if (mysqli_num_rows($result) > 0): ?>
+
+                    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+
+                        <tr>
+
+                            <td>
+                                <?php echo $row["id"]; ?>
+                            </td>
+
+                            <td>
+                                <?php echo htmlspecialchars($row["name"]); ?>
+                            </td>
+
+                            <td>
+                                <?php echo htmlspecialchars($row["email"]); ?>
+                            </td>
+
+                            <td>
+                                <?php echo htmlspecialchars($row["phone"]); ?>
+                            </td>
+
+                            <td>
+                                <?php echo htmlspecialchars($row["course"]); ?>
+                            </td>
+
+                            <td class="actions">
+
+                                <a
+                                    class="edit-btn"
+                                    href="edit_student.php?id=<?php echo $row['id']; ?>"
+                                >
+                                    Edit
+                                </a>
+
+                                <a
+                                    class="delete-btn"
+                                    href="delete_student.php?id=<?php echo $row['id']; ?>"
+                                    onclick="return confirm('Are you sure you want to delete this student?');"
+                                >
+                                    Delete
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    <?php endwhile; ?>
+
+                <?php else: ?>
+
+                    <tr>
+
+                        <td colspan="6" class="no-data">
+                            No students found.
+                        </td>
+
+                    </tr>
+
+                <?php endif; ?>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
 
 </body>
+
 </html>
