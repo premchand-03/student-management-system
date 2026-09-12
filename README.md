@@ -69,3 +69,23 @@ A web-based Student Management System built using PHP and MySQL.
 ## 👨‍💻 Developer
 
 Premchand
+
+
+
+## 📸 Screenshots
+
+### Login Page
+
+![Login Page](login.png)
+
+### Dashboard
+
+![Dashboard](dashboard.png)
+
+### Students Management
+
+![Students Management](students.png)
+
+### Student Profile
+
+![Student Profile](profile.png)
